@@ -1,37 +1,20 @@
-## Welcome to GitHub Pages
+## Welcome to the Experiment Page with Wikidata
 
-You can use the [editor on GitHub](https://github.com/yooylee/experiment-wikidata-canadian-archive-women-in-stem/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+### Example 1 - Canadian GLAMs Institutions containing Archive of Women in STEM
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Click the 🔴red map markers to see which GLSMs hold archival fonds!
 
-### Markdown
+<iframe style="width: 80vw; height: 50vh; border: none;" src="https://query.wikidata.org/embed.html#SELECT%20%3Fcoordinate%20%3Finstitution%20%3Finstitution_label%0AWHERE%20%0A%7B%0A%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%0A%20%3Farchive%20wdt%3AP361%20wd%3AQ63647303.%0A%20%3Farchive%20wdt%3AP126%20%3Finstitution.%0A%20%3Finstitution%20wdt%3AP625%20%3Fcoordinate.%0A%7D" referrerpolicy="origin" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+#### Methods
+Using [Wikidata's query service](https://query.wikidata.org/), I used the following SPQRQL query to generate a map with GLAM institutions.
 ```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/yooylee/experiment-wikidata-canadian-archive-women-in-stem/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+SELECT ?coordinate ?institution ?institution_label
+WHERE
+{
+ SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+ ?archive wdt:P361 wd:Q63647303.
+ ?archive wdt:P126 ?institution.
+ ?institution wdt:P625 ?coordinate.
+}
+```
