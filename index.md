@@ -10,7 +10,7 @@ Click the 🔴red map markers to see which GLAMs hold archival fonds!
 Using [Wikidata's query service](https://query.wikidata.org/), I used the following SPQRQL query to generate a map with GLAM institutions.
 ```
 #defaultView:Map
-SELECT ?coordinate ?institution ?institution_label
+SELECT ?coordinate ?institution ?institutionLabel
 WHERE
 {
  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
