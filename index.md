@@ -39,3 +39,22 @@ WHERE
 GROUP BY ?occupationLabel
 ORDER BY DESC (?count)
 ```
+
+### Example 3 - Timeline
+
+<iframe style="width: 80vw; height: 50vh; border: none;" src="https://query.wikidata.org/embed.html#%23defaultView%3ATimeline%0ASELECT%20%3Fitem%20%3FitemLabel%20%3Fstartdate%0AWHERE%0A%7B%0A%20%20%3Fitem%20wdt%3AP361%20wd%3AQ63647303%20%3B%0A%20%20%20%20%20%20%20%20(wdt%3AP580%7Cwdt%3AP7103)%20%3Fstartdate%20.%0A%20%20%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22%20%7D%0A%7D%0A%20%20" referrerpolicy="origin" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
+
+#### Methods
+Using [Wikidata's query service](https://query.wikidata.org/), I used the following SPQRQL query to generate timeline based on the start date of the archival fonds.
+
+```
+#defaultView:Timeline
+SELECT ?item ?itemLabel ?startdate
+WHERE
+{
+  ?item wdt:P361 wd:Q63647303 ;
+        (wdt:P580|wdt:P7103) ?startdate .
+
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en" }
+}
+```
